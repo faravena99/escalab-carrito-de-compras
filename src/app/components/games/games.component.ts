@@ -26,13 +26,36 @@ export class GamesComponent implements OnInit {
     this.setUp();    
   }
 
-  setUp(){
-    this.items = this.gamesService.getData(); 
+  setUp(){       
+    //Llamada servicio
+    this.getDataService();
+    // this.items = this.gamesService.getData(); 
     this.local  = localStorage.getItem('carrito');      
     if(this.local?.length > 0){
       console.log("Existen elementos en el carrito");
       this.carrito = JSON.parse(this.local);
     }
+  }
+
+  getDataService(){
+    console.log("llamada servicio");
+    this.gamesService.getDatav2().subscribe(resp =>{      
+      let aux:any = resp;
+      this.items = aux.mensaje;  
+      console.log(this.items)        
+    });
+  }
+
+  createGame(){
+    let obj = {
+            name: "FIFA 22",
+            description: "Juego de deportes",
+            platform: "Solo PS5",
+            img: "./assets/images/fifaps5.jpg"
+            }
+    this.gamesService.sendGame(obj).subscribe(respuesta =>{
+      console.log(respuesta);
+    });          
   }
 
   addCarrito(element:any){

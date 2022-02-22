@@ -18,7 +18,13 @@ export class CarritoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.game = this.srvGames.getGame(this.data)
+    console.log(this.data)
+    // this.game = this.srvGames.getGame(this.data)
+    this.srvGames.getGamev2(this.data).subscribe(resp =>{
+      let respService:any = resp;
+      this.game = respService.mensaje;
+      console.log(this.game)
+    })
   }
 
   deleteElement(index:any){     

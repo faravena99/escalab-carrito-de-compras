@@ -9,6 +9,10 @@ import { CarritoComponent } from './components/carrito/carrito.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { DetailgameComponent } from './components/detailgame/detailgame.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AddGameComponent } from './components/add-game/add-game.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EditGameComponent } from './components/edit-game/edit-game.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +22,15 @@ import { DetailgameComponent } from './components/detailgame/detailgame.componen
     CarritoComponent,
     HeaderComponent,
     HomeComponent,
-    DetailgameComponent
+    DetailgameComponent,
+    AddGameComponent,
+    EditGameComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

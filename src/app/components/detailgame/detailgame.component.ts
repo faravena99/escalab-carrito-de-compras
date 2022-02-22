@@ -10,11 +10,15 @@ import { GamesService } from '../../services/games.service'
 export class DetailgameComponent implements OnInit {
 
   game:any;
+  id:any;
   constructor( private activateRouter: ActivatedRoute, private gamesService : GamesService ) {
 
-    this.activateRouter.params.subscribe( data => {      
-      this.game = this.gamesService.getGame(data['id']);
-      console.log(this.game);
+    this.activateRouter.params.subscribe( data => {       
+      this.id =data['id'];
+      this.gamesService.getGamev2(this.id).subscribe(resp =>{
+        let data:any = resp;
+        this.game = data.mensaje;
+      });      
     });
    }
 

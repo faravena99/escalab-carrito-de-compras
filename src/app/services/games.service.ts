@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GamesService {
+
+private url ='http://localhost:3001';
 
   private items:any = [
     {      
@@ -37,13 +40,36 @@ export class GamesService {
       img : "./assets/images/pokemon.jpg"
     }
   ];
-  constructor() { }
+
+  constructor(private http:HttpClient) { }
 
 
   getData(){
     return this.items;
   }
+
+  getDatav2(){
+    return this.http.get(this.url+ '/products');
+  }
+  
   getGame(id:any){
     return this.items[id];
   }
+  getGamev2(id:any){        
+    return this.http.get(`${this.url}/product/${id}`);
+  }
+  updateGame(data:any){
+    return this.http.put(`${this.url}/product/${data.id}`, data);
+  }
+
+  sendGame(game:any){    
+    return this.http.post(this.url + '/product', game);
+  }
+
+
+
+  
+
+
+  
 }
