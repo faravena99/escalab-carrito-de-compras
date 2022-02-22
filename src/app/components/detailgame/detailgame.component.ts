@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
-import { GamesService } from '../../services/games.service'
+import { ActivatedRoute, Router } from '@angular/router';
+import { GamesService } from '../../services/games.service';
 
 @Component({
   selector: 'app-detailgame',
@@ -11,7 +11,7 @@ export class DetailgameComponent implements OnInit {
 
   game:any;
   id:any;
-  constructor( private activateRouter: ActivatedRoute, private gamesService : GamesService ) {
+  constructor( private activateRouter: ActivatedRoute, private gamesService : GamesService, private router:Router ) {
 
     this.activateRouter.params.subscribe( data => {       
       this.id =data['id'];
@@ -23,6 +23,13 @@ export class DetailgameComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  deleteGame() : void {
+    this.gamesService.deleteGame(this.id).subscribe(res => {
+      console.log(res)
+    });
+    this.router.navigate(['/games'])
   }
 
 }

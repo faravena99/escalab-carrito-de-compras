@@ -66,7 +66,9 @@ private url ='http://localhost:3001';
     return this.http.post(this.url + '/product', game);
   }
 
-
+  deleteGame(id: number) {
+    return this.http.delete(`${this.url}/productDeleteById/${id}`);
+  }
 
   
 
